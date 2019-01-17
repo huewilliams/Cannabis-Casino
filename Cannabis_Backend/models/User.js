@@ -12,13 +12,17 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(20),
             allowNull: false,
         },
-        yam: {
-            type: DataTypes.INTEGER(11),
-            defaultValue: 0,
+        realname : {
+            type: DataTypes.STRING(20),
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING(50),
             allowNull: false,
+        },
+        yam: {
+            type: DataTypes.INTEGER(11),
+            defaultValue: 0,
         },
     }, {
         timestamps: false
