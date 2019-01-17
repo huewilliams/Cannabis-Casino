@@ -1,0 +1,21 @@
+{
+  "name": "cannabis_casino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "huewilliams",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.4",
+    "nodemon": "^1.18.9",
+    "sequelize": "^4.42.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
