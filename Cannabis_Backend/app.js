@@ -9,7 +9,7 @@ const sequelize = require('./models').sequelize;
 const app = express();
 sequelize.sync();
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 5000);
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
