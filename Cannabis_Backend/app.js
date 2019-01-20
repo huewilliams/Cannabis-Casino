@@ -3,12 +3,13 @@ const path = require('path');
 const morgan = require('morgan');
 const favicon = require('express-favicon');
 const sequelize = require('./models').sequelize;
-
-//const indexRouter = require('./routes');
+const indexRouter = require('./routes');
+const cors = require('cors');
 
 const app = express();
 sequelize.sync();
 
+app.use(cors());
 app.set('port', process.env.PORT || 5000);
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev'));
@@ -16,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false , limit: '50mb'}));
 
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next) => {
