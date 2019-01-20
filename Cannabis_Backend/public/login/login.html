@@ -1,75 +1,105 @@
 <!DOCTYPE html>
 <html lang="kr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>로그인</title>
     <style>
-      .login-title{
-        font-size: 50px;
-        color: #a07b12;
-      }
-      .login {
-        margin-top: 15%;
-      }
-      .login input {
-        margin-bottom: 2%;
-        width: 45%;
-        display: inline-block;
-        background: transparent;
-        letter-spacing: 0.1em;
-        color: white;
-        border-radius: 8px;
-        padding: 18px;
-        border: 1px solid rgba(223, 190, 106, 0.3);
-      }
+        .login-title {
+            font-size: 50px;
+            color: #a07b12;
+        }
 
-      button {
-        width: 1000000px;
-        display: inline-block;
-        background: transparent;
-        font-weight: 500;
-        font-style: normal;
-        font-size: 0.625rem;
-        letter-spacing: 0.3em;
-        color: rgba(223,190,106,0.7);
-        border-radius: 20px;
-        padding: 18px 80px 20px;
-        transition: all 0.7s ease-out;
-        background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
-        background-position: 1% 50%;
-        background-size: 300% 300%;
-        text-decoration: snow;
-        margin: 0.625rem;
-        border: none;
-        border: 1px solid rgba(223,190,106,0.3);
-      }
-      button:hover {
-        color: #fff;
-        border: 1px solid rgba(223,190,106,0);
-        color: snow;
-        background-position: 99% 50%;
-      }
+        .login {
+            margin-top: 15%;
+        }
+
+        .login input {
+            margin-bottom: 2%;
+            width: 45%;
+            display: inline-block;
+            background: transparent;
+            letter-spacing: 0.1em;
+            color: white;
+            border-radius: 8px;
+            padding: 18px;
+            border: 1px solid rgba(223, 190, 106, 0.3);
+        }
+
+        button {
+            width: 1000000px;
+            display: inline-block;
+            background: transparent;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 0.625rem;
+            letter-spacing: 0.3em;
+            color: rgba(223, 190, 106, 0.7);
+            border-radius: 20px;
+            padding: 18px 80px 20px;
+            transition: all 0.7s ease-out;
+            background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
+            background-position: 1% 50%;
+            background-size: 300% 300%;
+            text-decoration: snow;
+            margin: 0.625rem;
+            border: none;
+            border: 1px solid rgba(223, 190, 106, 0.3);
+        }
+
+        button:hover {
+            color: #fff;
+            border: 1px solid rgba(223, 190, 106, 0);
+            color: snow;
+            background-position: 99% 50%;
+        }
     </style>
 
-  </head>
-  <body style="background-color: #1f1f1f">
-    <div class='login' style="text-align: center">
-      <h1 class="login-title" >LOG IN</h1>
-      <form name="input" method="post" action="https://cannabis-casino.herokuapp.com/control/signin.php">
-        <div>
+</head>
+<body style="background-color: #1f1f1f">
+<div class='login' style="text-align: center">
+    <h1 class="login-title">LOG IN</h1>
+    <!--<form name="input" method="post" action="hue">-->
+    <div>
           <span>
-            <input id="id"name="id" placeholder="ID">
+            <input id="id" name="id" placeholder="ID">
           </span>
-        </div>
-
-        <div>
-          <input id="password" title="password" name="password" placeholder="Password" type="password">
-        </div>
-        <br>
-        <button id="btn" type="submit" style="width: 45%;">Sign In</button>
-      </form>
     </div>
-    <script src = 'login.js'></script>
-  </body>
+
+    <div>
+        <input id="password" title="password" name="password" placeholder="Password" type="password">
+    </div>
+    <br>
+    <button id="btn" type="submit" style="width: 45%;">Sign In</button>
+    <!--</form>-->
+</div>
+<script src='login.js'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    let button = document.getElementById('btn');
+    button.addEventListener('click', function () {
+        let inputId = document.getElementById("id").value;
+        let password = document.getElementById("password").value;
+        let data = {
+            id: inputId,
+            password: password
+        };
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/token',
+            data: data
+        })
+            .then((response) => {
+                if(response.data == 'err') {
+                    alert('아이디 또는 비밀번호가 틀렸습니다');
+                }
+                else {
+                    localStorage.setItem('token', response.data);
+                    if(localStorage.getItem('token')) window.location.href = 'http://localhost:5000';
+                }
+            })
+    });
+</script>
+</body>
 </html>
