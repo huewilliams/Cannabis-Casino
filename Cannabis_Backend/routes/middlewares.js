@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
 
-exports.jwtVerify = (req, res, next) => {
-    console.log(req);
-    let token = req.cookies.token;
-    if (token) {
+exports.jwtVerify = async (req, res, next) => {
+    try {
+        console.log(req);
+        let token = req.cookies.token;
+        await jwt.verify(token,'jwt_secret');
         next();
-    } else {
+    } catch (e) {
         res.redirect('/login/login.html');
     }
 };
@@ -19,7 +20,12 @@ exports.newJwt = (user) => {
         },
         'jwt_secret',
         {
-            expiresIn: '1h',
+            expiresIn: '15m',
         });
     return token;
+};
+
+exports.verify = (token) => {
+    const result = jwt.verify(token, 'jwt_secret');
+    return result;
 };
