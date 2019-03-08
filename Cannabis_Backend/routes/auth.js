@@ -24,8 +24,20 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
-router.get('/signUp', (req, res) => {
-    res.redirect('/signup/signup.html');
+router.post('/signUp', async (req, res, next) => {
+    try {
+        await User.create({
+            id: req.body.id,
+            realname: req.body.realName,
+            password: req.body.password,
+            email: req.body.email,
+            nickname: req.body.nickname,
+            profile: 'no_profile'
+        });
+        res.redirect('/');
+    } catch (e) {
+        next(e);
+    }
 });
 
 // PHP 서버로 요청을 보내 token 을 발급받아 전달해주는 API
