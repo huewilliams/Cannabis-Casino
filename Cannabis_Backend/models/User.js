@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER(11),
             defaultValue: 0,
         },
+        profile: {
+            type: DataTypes.STRING(100),
+            defaultValue: 'no_profile',
+        }
     }, {
         timestamps: false
     })
