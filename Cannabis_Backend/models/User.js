@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         profile: {
             type: DataTypes.STRING(100),
-            defaultValue: 'no_profile',
+            defaultValue: 'no_profile.png',
         }
     }, {
         timestamps: false
