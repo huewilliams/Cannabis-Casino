@@ -40,25 +40,4 @@ router.post('/signUp', async (req, res, next) => {
     }
 });
 
-// PHP 서버로 요청을 보내 token 을 발급받아 전달해주는 API
-router.post('/token', (req, res) => {
-    let data = {
-        id: req.body.id,
-        password: req.body.password
-    };
-    axios.post('https://cannabis-casino.herokuapp.com/control/signin.php', qs.stringify(data), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            }
-        }
-    ).then((response) => {
-        if (!response.headers.authorization)
-            res.send('err');
-        res.cookie('token',response.headers.authorization);
-        res.redirect('/');
-    })
-});
-
-
-
 module.exports = router;
