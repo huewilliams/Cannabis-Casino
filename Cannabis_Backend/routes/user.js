@@ -21,4 +21,10 @@ router.get('/nick', (req,res)=>{
     res.send(userInfo.nickname);
 });
 
+router.get('/real', (req, res)=>{
+    let token = req.cookies.token;
+    let userInfo = verify(token);
+    res.send(userInfo.realname);
+});
+
 module.exports = router;
