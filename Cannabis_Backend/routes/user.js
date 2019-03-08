@@ -27,4 +27,10 @@ router.get('/real', (req, res)=>{
     res.send(userInfo.realname);
 });
 
+router.get('/yam', (req, res)=>{
+    let token = req.cookies.token;
+    let userInfo = verify(token);
+    res.send(String(userInfo.yam));
+});
+
 module.exports = router;
