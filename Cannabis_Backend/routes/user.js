@@ -51,7 +51,7 @@ let upload = multer({
         },
         filename(req, file, cb) {
             const ext = path.extname(file.originalname);
-            cb(null, path.basename(file.originalname) + ext);
+            cb(null, path.basename(file.originalname));
         }
         ,
         // 파일 사이즈 제한 설정
