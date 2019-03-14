@@ -9,7 +9,7 @@ router.get('/img/:nickname', async (req, res, next)=> {
         let user = await User.findOne({
             where: {nickname: req.params.nickname}
         });
-        res.send(`http://localhost:5000/${user.profile}`);
+        res.send(`http://${process.env.HOST}:5000/${user.profile}`);
     } catch (e) {
         next(e);
     }
