@@ -31,8 +31,7 @@ router.post('/signUp', async (req, res, next) => {
             realname: req.body.realName,
             password: req.body.password,
             email: req.body.email,
-            nickname: req.body.nickname,
-            profile: 'no_profile'
+            nickname: req.body.nickname
         });
         res.redirect('/');
     } catch (e) {
