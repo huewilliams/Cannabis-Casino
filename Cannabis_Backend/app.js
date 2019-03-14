@@ -2,22 +2,36 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const favicon = require('express-favicon');
-const sequelize = require('./models').sequelize;
-const indexRouter = require('./routes');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
+const sequelize = require('./models').sequelize;
+const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/user');
 
 const app = express();
 sequelize.sync();
 
-app.use(cors());
 app.set('port', process.env.PORT || 5000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+app.use(cors());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({ extended : false , limit: '50mb'}));
+app.use(express.urlencoded({extended: false, limit: '50mb'}));
+app.use(cookieParser('cannabisCasino'));
+// login, signUp, gameSelect page
+app.use(express.static(path.join(__dirname, 'public')));
+// upload file directory
+app.use(express.static(path.join(__dirname, 'uploads')));
 
+app.use('/auth', authRouter);
 app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next) => {
