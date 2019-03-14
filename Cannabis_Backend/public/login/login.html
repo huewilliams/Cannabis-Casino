@@ -53,6 +53,14 @@
             color: snow;
             background-position: 99% 50%;
         }
+
+        .btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
     </style>
 
 </head>
@@ -70,7 +78,10 @@
         <input id="password" title="password" name="password" placeholder="Password" type="password">
     </div>
     <br>
+    <div class="btn-wrapper">
     <button id="btn" type="submit" style="width: 45%;">Sign In</button>
+    <button id="new" type="submit" style="width: 45%;">Sign Up</button>
+        </div>
     <!--</form>-->
 </div>
 <script src='login.js'></script>
@@ -87,7 +98,7 @@
 
         axios({
             method: 'post',
-            url: 'http://localhost:5000/token',
+            url: 'http://localhost:5000/auth/login',
             data: data
         })
             .then((response) => {
@@ -95,10 +106,14 @@
                     alert('아이디 또는 비밀번호가 틀렸습니다');
                 }
                 else {
-                    localStorage.setItem('token', response.data);
-                    if(localStorage.getItem('token')) window.location.href = 'http://localhost:5000';
+                    window.location.href = 'http://localhost:5000/';
                 }
             })
+    });
+
+    let newButton = document.getElementById('new');
+    newButton.addEventListener('click', function () {
+        window.location.href = 'http://localhost:5000/new';
     });
 </script>
 </body>
