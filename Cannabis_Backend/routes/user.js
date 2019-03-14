@@ -48,6 +48,10 @@ let upload = multer({
         // 파일 저장 경로 설정
         destination(req, file, cb) {
             cb(null, 'uploads/');
+        },
+        filename(req, file, cb) {
+            const ext = path.extname(file.originalname);
+            cb(null, path.basename(file.originalname) + ext);
         }
         ,
         // 파일 사이즈 제한 설정
