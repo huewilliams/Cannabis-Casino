@@ -58,21 +58,21 @@
   <body style="background-color: #1f1f1f">
     <div class='signup' style="text-align: center">
       <h1 class="signup-title">SIGN UP</h1>
-      <form name="input" method="post"  action="https://cannabis-casino.herokuapp.com/control/singup.php" onsubmit="return check();" >
+      <form name="input" method="post"  action="http://localhost:5000/auth/signUp" onsubmit="return check();" >
         <div>
-          <input id="realName" name="realName" placeholder="Your Name">
+          <input id="realName" name="realName" placeholder="Real Name">
           <p id="nameError" style="color: darkred; text-align: -moz-center"></p>
         </div>
 
         <div>
-          <input id="id" name="id" placeholder="Username">
+          <input id="id" name="id" placeholder="Id">
           <p id="idError" style="color: darkred; text-align: -moz-center"></p>
         </div>
         <div>
           <span id="passwordWrapper">
             <input id="password" title="password" name="password" placeholder="Password" type="password" style="width: 20%;">
             <input id="confirm" title="confirm" name="confirm" placeholder="Confirm" type="password" style="width: 20%; margin-bottom: 0px">
-            <script src='./confirm.js'></script>
+            <script src='confirm.js'></script>
             <p id="passError" style="color: darkred; text-align: -moz-center"></p>
           </span>
         </div>
@@ -90,5 +90,12 @@
         <button id="btn" type="submit" style="width: 45%;">Sign Up</button>
       </form>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      let button = document.getElementById('btn');
+      button.addEventListener('click', function () {
+        window.location.href = 'http://localhost:5000/'
+      });
+    </script>
   </body>
 </html>
