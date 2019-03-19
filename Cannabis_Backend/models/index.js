@@ -17,5 +17,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = require('./User')(sequelize,Sequelize);
+db.Room = require('./Room')(sequelize, Sequelize);
 
 module.exports = db;
