@@ -12,14 +12,12 @@ router.post('/login', async (req, res, next) => {
         });
         if(user) {
             const token = newJwt(user);
-            res.cookie('token',token);
             res.json(token);
         } else {
             let error = new Error('아이디 혹은 비밀번호 틀림');
             throw error;
         }
     } catch (error) {
-        console.error(error);
         next(error);
     }
 });
