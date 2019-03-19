@@ -13,7 +13,7 @@ router.post('/login', async (req, res, next) => {
         if(user) {
             const token = newJwt(user);
             res.cookie('token',token);
-            res.redirect('/');
+            res.json(token);
         } else {
             let error = new Error('아이디 혹은 비밀번호 틀림');
             throw error;
@@ -33,7 +33,7 @@ router.post('/signUp', async (req, res, next) => {
             email: req.body.email,
             nickname: req.body.nickname
         });
-        res.redirect('/');
+        res.json({state: "signUp success"});
     } catch (e) {
         next(e);
     }
