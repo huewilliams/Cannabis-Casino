@@ -36,6 +36,16 @@ router.get('/yam', (req, res)=>{
     res.send(String(userInfo.yam));
 });
 
+router.get('/profile', (req, res)=> {
+   let token = req.cookies.token;
+   let userInfo = verify(token);
+   res.json({
+       nickname: userInfo.nickname,
+       realname: userInfo.realname,
+       yam: userInfo.yam,
+   })
+});
+
 fs.readdir('uploads', (error)=>{
     if (error) {
         console.error('uploads 폴더가 없어 uploads 폴더를 서버의 디스크에 생성합니다');
