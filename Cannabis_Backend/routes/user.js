@@ -19,26 +19,22 @@ router.get('/img/:nickname', async (req, res, next)=> {
 });
 
 router.get('/nick', (req,res)=>{
-    let token = req.cookies.token;
-    let userInfo = verify(token);
+    let userInfo = verify();
     res.send(userInfo.nickname);
 });
 
 router.get('/real', (req, res)=>{
-    let token = req.cookies.token;
-    let userInfo = verify(token);
+    let userInfo = verify();
     res.send(userInfo.realname);
 });
 
 router.get('/yam', (req, res)=>{
-    let token = req.cookies.token;
-    let userInfo = verify(token);
+    let userInfo = verify();
     res.send(String(userInfo.yam));
 });
 
 router.get('/profile', (req, res)=> {
-   let token = req.cookies.token;
-   let userInfo = verify(token);
+   let userInfo = verify();
    res.json({
        nickname: userInfo.nickname,
        realname: userInfo.realname,
