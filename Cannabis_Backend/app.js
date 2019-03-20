@@ -10,6 +10,7 @@ const sequelize = require('./models').sequelize;
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
+const pokerRouter = require('./routes/poker');
 
 const app = express();
 sequelize.sync();
@@ -30,9 +31,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // upload file directory
 app.use(express.static(path.join(__dirname, 'uploads')));
 
+// let requset = [];
+// global.time = 0;
+// app.use((req, res, next)=>{
+//     global.time ++;
+//     requset.push(global.time);
+//     next();
+// });
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/poker', pokerRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next) => {
@@ -46,9 +55,10 @@ app.use((err, req, res) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
-    res.render(error);
 });
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
+
+module.exports = app;
