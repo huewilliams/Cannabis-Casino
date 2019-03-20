@@ -25,7 +25,8 @@ exports.newJwt = (user) => {
     return token;
 };
 
-exports.verify = (token) => {
+exports.verify = () => {
+    const token = req.headers['token'];
     const result = jwt.verify(token, 'jwt_secret');
     return result;
 };
