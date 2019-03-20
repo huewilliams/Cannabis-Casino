@@ -12,4 +12,9 @@ router.post('/', jwtVerify, async (req, res)=>{
     res.send('game room created');
 });
 
+router.get('/', jwtVerify, async (req, res)=>{
+    const room = await Room.findAll({});
+    res.json(room);
+});
+
 module.exports = router;
