@@ -39,6 +39,7 @@ router.get('/profile', (req, res)=> {
        nickname: userInfo.nickname,
        realname: userInfo.realname,
        yam: userInfo.yam,
+       profile: `http://${process.env.HOST}:5000/${userInfo.profile}`,
    })
 });
 
