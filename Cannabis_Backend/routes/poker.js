@@ -19,4 +19,18 @@ router.get('/', async (req, res)=>{
     res.json(room);
 });
 
+router.get('/:title', async (req, res)=>{
+   const room = await Room.findOne({
+       where: {title: req.params.title}
+   });
+   if(room) {
+       res.send('duplicate');
+   } else {
+       res.send('OK');
+       const io = req.app.get('io');
+       res.render('indianPoker', {title: req.params.title});
+       io.of('/game').emit('new', req.params.title);
+   }
+});
+
 module.exports = router;
