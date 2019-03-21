@@ -14,4 +14,9 @@ router.post('/', async (req, res)=>{
     res.send('game room created');
 });
 
+router.get('/', async (req, res)=>{
+    const room = await Room.findAll({});
+    res.json(room);
+});
+
 module.exports = router;
