@@ -17,6 +17,7 @@ exports.newJwt = (user) => {
             id: user.id,
             yam: user.yam,
             realname: user.realname,
+            profile: user.profile,
         },
         'jwt_secret',
         {
