@@ -43,6 +43,15 @@ router.get('/profile', (req, res)=> {
    })
 });
 
+router.get('/rank', async (req, res)=>{
+   const users = await User.findAll({
+       attributes: ['id','nickname','yam','profile'],
+       order: [['yam','DESC']],
+       limit: 10,
+   });
+    res.json(users);
+});
+
 fs.readdir('uploads', (error)=>{
     if (error) {
         console.error('uploads 폴더가 없어 uploads 폴더를 서버의 디스크에 생성합니다');
