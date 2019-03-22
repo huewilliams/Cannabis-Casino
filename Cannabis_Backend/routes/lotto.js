@@ -11,7 +11,7 @@ client.on('error', (err)=>{
     console.log(err);
 });
 
-router.post('/set', (req, res)=>{
+router.post('/set', async (req, res)=>{
     if(req.body.secret != process.env.REDIS_SECRET)
         res.send('접근권한이 없습니다');
     let list = Array(45)
@@ -26,7 +26,9 @@ router.post('/set', (req, res)=>{
         list[rand] = list[i];
         list [i] = temp;
     }
-
+    await client.flushdb(function (err, succeeded) {
+        console.log(succeeded);
+    });
     list.join('');
     let select = list.splice(0,7);
     console.log('새로운 로또 번호 : ',select);
