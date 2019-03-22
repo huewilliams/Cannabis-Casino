@@ -11,12 +11,14 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "connect-redis": "^3.4.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-favicon": "^2.0.1",
+    "express-session": "^1.15.6",
     "html": "^1.0.0",
     "jsonwebtoken": "^8.5.0",
     "morgan": "^1.9.1",
@@ -24,7 +26,12 @@
     "mysql2": "^1.6.4",
     "nodemon": "^1.18.9",
     "qs": "^6.6.0",
+    "random": "^2.1.1",
+    "redis": "^2.8.0",
     "sequelize": "^4.42.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "should": "^13.2.3",
+    "socket.io": "^2.2.0",
+    "supertest": "^4.0.2"
   }
 }
