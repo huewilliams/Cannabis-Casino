@@ -37,4 +37,47 @@ router.post('/set', (req, res)=>{
     res.json(check);
 });
 
+router.post('/check', async (req, res) => {
+    let check;
+    let count = 0;
+
+    function getData(callback) {
+        return new Promise((resolve, reject) => {
+            client.lrange('lotto', 0, -1, (err, reply) => {
+                resolve(reply);
+            });
+        })
+    }
+
+    await getData().then((reply) => {
+        check = reply;
+    });
+
+    let user = req.body.lotto.split('-');
+
+    for (let i = 0; i < user.length - 1; i++) {
+        for (let j = 0; j < check.length - 1; j++) {
+            if (user[i] == check[j])
+                count++;
+        }
+    }
+    res.setHeader('Content-Type', 'application/json');
+    switch (count) {
+        case 6:
+            res.json({rank: '1'});
+            break;
+        case 5:
+            if(user[user.length-1] == check[check.length-1])
+                res.json({rank: '2'});
+            else
+                res.json({rank: '3'});
+        case 4:
+            res.json({rank: '4'});
+        case 3:
+            res.json({rank: '5'});
+        default:
+            res.json({rank: '0'});
+    }
+});
+
 module.exports = router;
