@@ -10,7 +10,10 @@ Cannabis Casino
 * Node.js(Express.js)
 ### Database
 * Mysql
-* Sequelize (ORM)
+### ORM
+* Sequelize
+### key-value
+* Redis
 ### Authorization
 * Json Web Token (JWT)
 ### WebSocket
