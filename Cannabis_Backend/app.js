@@ -5,12 +5,14 @@ require('dotenv').config();
 const favicon = require('express-favicon');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const WebSocket = require('./socket');
 
 const sequelize = require('./models').sequelize;
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const pokerRouter = require('./routes/poker');
+const lottoRouter = require('./routes/lotto');
 
 const app = express();
 sequelize.sync();
@@ -31,19 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // upload file directory
 app.use(express.static(path.join(__dirname, 'uploads')));
 
-// let requset = [];
-// global.time = 0;
-// app.use((req, res, next)=>{
-//     global.time ++;
-//     requset.push(global.time);
-//     next();
-// });
 app.use('/auth', authRouter);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/poker', pokerRouter);
+app.use('/lotto', lottoRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
+
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
@@ -51,14 +48,16 @@ app.use((req, res, next) => {
 });
 
 // 에러 핸들러
+
 app.use((err, req, res) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
 });
 
-app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
 
+WebSocket(server, app);
 module.exports = app;
