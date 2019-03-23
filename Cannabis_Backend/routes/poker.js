@@ -11,7 +11,6 @@ router.post('/', async (req, res)=>{
     const room = await Room.create({
         title: req.body.title,
         owner: token.nickname,
-        people: 1,
         bet: req.body.bet,
     });
     res.send(req.body.title);
