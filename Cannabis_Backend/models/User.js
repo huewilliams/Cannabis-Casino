@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         profile: {
             type: DataTypes.STRING(100),
             defaultValue: 'no_profile.png',
+        },
+        lotto: {
+            type: DataTypes.INTEGER(),
+            defaultValue: 0,
         }
     }, {
         timestamps: false
