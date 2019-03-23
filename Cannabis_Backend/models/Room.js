@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         people: {
             type: DataTypes.INTEGER(),
-            defaultValue: 1,
+            defaultValue: 0,
         },
         bet: {
             type: DataTypes.INTEGER(),
