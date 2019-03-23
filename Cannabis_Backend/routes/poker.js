@@ -14,7 +14,7 @@ router.post('/', async (req, res)=>{
         people: 1,
         bet: req.body.bet,
     });
-    res.send('game room created');
+    res.send(req.body.title);
 });
 
 router.get('/list', async (req, res)=>{
@@ -24,6 +24,15 @@ router.get('/list', async (req, res)=>{
 
 router.get('/', (req, res)=>{
    res.render('room.html');
+});
+
+router.get('/player', (req, res)=> {
+    if(req.cookies.token) {
+        let token = jwt.verify(req.cookies.token, 'jwt_secret');
+        res.send(token.nickname);
+    } else {
+        res.send('request_invalid');
+    }
 });
 
 router.get('/:title', async (req, res)=>{
