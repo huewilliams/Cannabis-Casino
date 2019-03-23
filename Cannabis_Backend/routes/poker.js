@@ -62,4 +62,16 @@ router.post('/enter', (req, res)=>{
     console.log('token received: ',req.headers['token']);
 });
 
+router.get('/owner/:title', async (req, res)=>{
+    if(req.headers['token']) {
+        const room = await Room.findOne({
+            where: {title: req.params.title},
+        });
+        if (room)
+            res.send(room.owner);
+    }
+    else
+        res.send('request_invalid');
+});
+
 module.exports = router;
