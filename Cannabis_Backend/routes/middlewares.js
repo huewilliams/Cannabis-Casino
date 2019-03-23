@@ -28,6 +28,9 @@ exports.newJwt = (user) => {
 
 exports.verify = (req) => {
     const token = req.headers['token'];
-    const result = jwt.verify(token, 'jwt_secret');
-    return result;
+    if(token) {
+        const result = jwt.verify(token, 'jwt_secret');
+        return result;
+    } else
+        return 'invalid';
 };
