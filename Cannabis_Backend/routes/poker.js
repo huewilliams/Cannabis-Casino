@@ -1,13 +1,16 @@
 let express = require('express');
 let router = express.Router();
 
+const jwt = require('jsonwebtoken');
 const { jwtVerify } = require('./middlewares');
 const Room = require('../models').Room;
 
 router.post('/', async (req, res)=>{
+    console.log('cookie: ',req.cookies.token);
+    let token = jwt.verify(req.cookies.token,'jwt_secret');
     const room = await Room.create({
         title: req.body.title,
-        owner: req.body.owner,
+        owner: token.nickname,
         people: 1,
         bet: req.body.bet,
     });
@@ -44,7 +47,11 @@ router.get('/check/:title', async (req, res)=>{
 });
 
 router.post('/enter', (req, res)=>{
-    res.send(req.body.title);
+    if(req.headers['token'])
+        res.send(req.body.title);
+    else
+        res.send('request_invalid');
+    console.log('token received: ',req.headers['token']);
 });
 
 module.exports = router;
