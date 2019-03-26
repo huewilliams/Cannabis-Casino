@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         bet: {
             type: DataTypes.INTEGER(),
             required: true,
+        },
+        state: {
+            type: DataTypes.STRING(10),
+            defaultValue: 'wait',
         }
     }, {
         timestamps: false
