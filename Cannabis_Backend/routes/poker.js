@@ -74,4 +74,17 @@ router.get('/owner/:title', async (req, res)=>{
         res.send('request_invalid');
 });
 
+router.get('/ready/:title', async (req, res)=>{
+   const room = await Room.findOne({
+       where: {title: req.params.title},
+   });
+   if (room) {
+       await Room.update({state: 'ready'},{where: {title: req.params.title}});
+       res.send('OK');
+   }
+   else {
+       res.send('fail')
+   }
+});
+
 module.exports = router;
