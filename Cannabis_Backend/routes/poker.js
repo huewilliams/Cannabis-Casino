@@ -125,6 +125,7 @@ router.get('/set/:title', async (req, res) => {
         res.send('OK');
 });
 
+// 카드 한 장 더 뽑기 API
 router.get('/draw/:title', async (req, res) => {
     let length;
 
@@ -154,6 +155,24 @@ router.get('/draw/:title', async (req, res) => {
     await getData().then((reply) => {
         data = reply;
     });
+
+    function popData(callback) {
+        return new Promise((resolve, reject) => {
+            client.lrem('poker' + req.params.title, 1, data, (err, res) => {
+                resolve(res);
+            });
+        })
+    }
+
+    await popData().then((reply) => {
+        console.log(reply);
+    });
+
+    await getLength().then((reply) => {
+        length = reply;
+    });
+
+    console.log(length);
 
     res.json(data);
 });
