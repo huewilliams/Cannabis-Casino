@@ -104,15 +104,15 @@ router.get('/set/:title', async (req, res) => {
             return index + 1;
         });
     // 리스트 비우기
-    client.del('poker'+req.params.title);
+    client.del('poker' + req.params.title);
     await deck.forEach(x => {
-        client.lpush('poker'+req.params.title, x);
+        client.lpush('poker' + req.params.title, x);
         console.log(x);
     });
 
     function getData(callback) {
         return new Promise((resolve, reject) => {
-            client.llen('poker'+req.params.title, (err, res) => {
+            client.llen('poker' + req.params.title, (err, res) => {
                 resolve(res);
             });
         })
@@ -121,8 +121,41 @@ router.get('/set/:title', async (req, res) => {
     await getData().then((reply) => {
         length = reply;
     });
-    if(len === 40)
+    if (length === 40)
         res.send('OK');
+});
+
+router.get('/draw/:title', async (req, res) => {
+    let length;
+
+    function getLength(callback) {
+        return new Promise((resolve, reject) => {
+            client.llen('poker' + req.params.title, (err, res) => {
+                resolve(res);
+            });
+        })
+    }
+
+    await getLength().then((reply) => {
+        length = reply;
+    });
+
+    let rand = random.integer(0, length-1);
+    let data;
+
+    function getData(callback) {
+        return new Promise((resolve, reject) => {
+            client.lindex('poker' + req.params.title, rand, (err, res) => {
+                resolve(res);
+            });
+        })
+    }
+
+    await getData().then((reply) => {
+        data = reply;
+    });
+
+    res.json(data);
 });
 
 module.exports = router;
