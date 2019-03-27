@@ -95,10 +95,10 @@ router.get('/ready/:title', async (req, res) => {
     }
 });
 
-// 카드 40장 초기화 세팅 API (40장)
+// 카드 20장 초기화 세팅 API
 router.get('/set/:title', async (req, res) => {
     let length;
-    let deck = Array(40)
+    let deck = Array(20)
         .fill()
         .map((element, index) => {
             return index + 1;
@@ -121,7 +121,7 @@ router.get('/set/:title', async (req, res) => {
     await getData().then((reply) => {
         length = reply;
     });
-    if (length === 40)
+    if (length === 20)
         res.send('OK');
 });
 
