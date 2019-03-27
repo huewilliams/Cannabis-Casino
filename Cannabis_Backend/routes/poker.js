@@ -71,6 +71,7 @@ router.post('/enter', (req, res) => {
     console.log('token received: ', req.headers['token']);
 });
 
+// 게임의 방장을 반환하는 API
 router.get('/owner/:title', async (req, res) => {
     if (req.headers['token']) {
         const room = await Room.findOne({
@@ -78,6 +79,18 @@ router.get('/owner/:title', async (req, res) => {
         });
         if (room)
             res.send(room.owner);
+    } else
+        res.send('request_invalid');
+});
+
+// 게임의 초기 베팅 칩 개수를 반환하는 API
+router.get('/bet/:title', async (req, res) => {
+    if (req.headers['token']) {
+        const room = await Room.findOne({
+            where: {title: req.params.title},
+        });
+        if (room)
+            res.send(room.bet +'chip');
     } else
         res.send('request_invalid');
 });
@@ -141,7 +154,7 @@ router.get('/draw/:title', async (req, res) => {
         length = reply;
     });
 
-    let rand = random.integer(0, length-1);
+    let rand = random.integer(0, length - 1);
     let data;
 
     function getData(callback) {
