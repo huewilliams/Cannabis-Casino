@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
-const { verify } = require('./middlewares');
+const { verify, jwtVerify } = require('./middlewares');
 const User = require('../models').User;
 
 router.get('/img/:nickname', async (req, res, next)=> {
@@ -28,9 +28,28 @@ router.get('/real', (req, res)=>{
     res.send(userInfo.realname);
 });
 
-router.get('/yam', (req, res)=>{
+router.get('/yam', async (req, res)=>{
     let userInfo = verify(req);
-    res.send(String(userInfo.yam));
+    let user = await User.findOne({
+        nickname: userInfo.nickname,
+    });
+    if(user) {
+        res.json({yam:user.yam});
+    }
+});
+
+router.post('/yam', jwtVerify, async (req, res)=>{
+   let userInfo = verify(req);
+   let user = await User.findOne({
+       nickname: userInfo.nickname,
+   });
+   if(user) {
+       let yam = user.yam + Number(req.body.yam);
+       await User.update({yam: yam}, {where: {nickname: userInfo.nickname}});
+       res.send('OK');
+   } else {
+       res.send('유저를 찾을 수 없습니다');
+   }
 });
 
 router.get('/profile', (req, res)=> {
