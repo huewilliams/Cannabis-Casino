@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         lotto: {
             type: DataTypes.INTEGER(),
             defaultValue: 0,
+        },
+        chip: {
+            type: DataTypes.INTEGER(),
+            defaultValue: 5,
         }
     }, {
         timestamps: false
