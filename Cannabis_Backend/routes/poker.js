@@ -5,6 +5,7 @@ let router = express.Router();
 const jwt = require('jsonwebtoken');
 const {jwtVerify} = require('./middlewares');
 const Room = require('../models').Room;
+const User = require('../models').User;
 
 const redis = require('redis');
 const client = redis.createClient('18078', 'redis-18078.c10.us-east-1-2.ec2.cloud.redislabs.com');
@@ -138,6 +139,8 @@ router.get('/set/:title', async (req, res) => {
         res.send('OK');
 });
 
+//TODO 카드 중복 처리하기
+
 // 카드 한 장 더 뽑기 API
 router.get('/draw/:title', async (req, res) => {
     let length;
@@ -156,6 +159,7 @@ router.get('/draw/:title', async (req, res) => {
 
     let rand = random.integer(0, length - 1);
     let data;
+    let duplicate;
 
     function getData(callback) {
         return new Promise((resolve, reject) => {
@@ -182,6 +186,16 @@ router.get('/draw/:title', async (req, res) => {
     });
 
     res.json(data);
+});
+
+router.get('/chip/:nickname', async (req, res)=>{
+    let user = await User.findOne({
+        where: {nickname: req.params.nickname},
+    });
+
+    if(user) {
+        res.json(user.chip);
+    }
 });
 
 module.exports = router;
