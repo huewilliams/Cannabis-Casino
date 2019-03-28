@@ -181,12 +181,6 @@ router.get('/draw/:title', async (req, res) => {
         console.log(reply);
     });
 
-    await getLength().then((reply) => {
-        length = reply;
-    });
-
-    console.log(length);
-
     res.json(data);
 });
 
