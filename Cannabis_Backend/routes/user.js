@@ -31,7 +31,7 @@ router.get('/real', (req, res)=>{
 router.get('/yam', async (req, res)=>{
     let userInfo = verify(req);
     let user = await User.findOne({
-        nickname: userInfo.nickname,
+        where: {nickname: userInfo.nickname},
     });
     if(user) {
         res.json({yam:user.yam});
@@ -41,7 +41,7 @@ router.get('/yam', async (req, res)=>{
 router.post('/yam', jwtVerify, async (req, res)=>{
    let userInfo = verify(req);
    let user = await User.findOne({
-       nickname: userInfo.nickname,
+       where: {nickname: userInfo.nickname},
    });
    if(user) {
        let yam = Number(user.yam) + Number(req.body.yam);
