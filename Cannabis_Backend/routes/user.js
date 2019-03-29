@@ -44,7 +44,7 @@ router.post('/yam', jwtVerify, async (req, res)=>{
        nickname: userInfo.nickname,
    });
    if(user) {
-       let yam = user.yam + Number(req.body.yam);
+       let yam = Number(user.yam) + Number(req.body.yam);
        await User.update({yam: yam}, {where: {nickname: userInfo.nickname}});
        res.send('OK');
    } else {
