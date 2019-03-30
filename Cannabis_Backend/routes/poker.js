@@ -3,7 +3,7 @@ const random = require('random');
 let router = express.Router();
 
 const jwt = require('jsonwebtoken');
-const {jwtVerify} = require('./middlewares');
+const {jwtVerify, verify} = require('./middlewares');
 const Room = require('../models').Room;
 const User = require('../models').User;
 
@@ -39,9 +39,9 @@ router.get('/player', async (req, res) => {
     if (req.cookies.token) {
         let token = jwt.verify(req.cookies.token, 'jwt_secret');
         let user = await User.findOne({
-           where: {nickname: token.nickname},
+            where: {nickname: token.nickname},
         });
-        if(user) {
+        if (user) {
             res.json({nickname: token.nickname, chip: user.chip});
         }
     } else {
@@ -83,13 +83,12 @@ router.get('/owner/:title', async (req, res) => {
         const room = await Room.findOne({
             where: {title: req.params.title},
         });
-        if (room)
-        {
+        if (room) {
             const user = await User.findOne({
                 where: {nickname: room.owner},
             });
-            if(user) {
-               res.json({nickname: user.nickname, chip: user.chip});
+            if (user) {
+                res.json({nickname: user.nickname, chip: user.chip});
             }
         }
     } else
@@ -103,7 +102,7 @@ router.get('/bet/:title', async (req, res) => {
             where: {title: req.params.title},
         });
         if (room)
-            res.send(room.bet +'chip');
+            res.send(room.bet + 'chip');
     } else
         res.send('request_invalid');
 });
@@ -200,13 +199,29 @@ router.get('/draw/:title', async (req, res) => {
     res.json(data);
 });
 
-router.get('/chip/:nickname', async (req, res)=>{
+router.get('/chip/:nickname', async (req, res) => {
     let user = await User.findOne({
         where: {nickname: req.params.nickname},
     });
 
-    if(user) {
+    if (user) {
         res.json(user.chip);
+    }
+});
+
+router.post('/chip', async (req, res) => {
+    let user = verify(req);
+    if (user.nickname !== req.body.nickname) {
+        res.send('invalid request');
+    } else {
+        let result = await User.findOne({
+            where: {nickname: user.nickname},
+        });
+        if (result) {
+            let chip = Number(req.body.chip) + Number(result.chip);
+            await User.update({chip: chip}, {where: {nickname: user.nickname}})
+            res.send('OK');
+        }
     }
 });
 
