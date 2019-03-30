@@ -35,10 +35,15 @@ router.get('/', (req, res) => {
     res.render('room.html');
 });
 
-router.get('/player', (req, res) => {
+router.get('/player', async (req, res) => {
     if (req.cookies.token) {
         let token = jwt.verify(req.cookies.token, 'jwt_secret');
-        res.send(token.nickname);
+        let user = await User.findOne({
+           where: {nickname: token.nickname},
+        });
+        if(user) {
+            res.json({nickname: token.nickname, chip: user.chip});
+        }
     } else {
         res.send('request_invalid');
     }
@@ -79,7 +84,14 @@ router.get('/owner/:title', async (req, res) => {
             where: {title: req.params.title},
         });
         if (room)
-            res.send(room.owner);
+        {
+            const user = await User.findOne({
+                where: {nickname: room.owner},
+            });
+            if(user) {
+               res.json({nickname: user.nickname, chip: user.chip});
+            }
+        }
     } else
         res.send('request_invalid');
 });
