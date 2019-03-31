@@ -4,7 +4,7 @@ exports.jwtVerify = async (req, res, next) => {
     try {
         console.log(req);
         let token = req.headers['token'];
-        await jwt.verify(token,'jwt_secret');
+        await jwt.verify(token, 'jwt_secret');
         next();
     } catch (e) {
         res.redirect('/login/login.html');
@@ -21,15 +21,16 @@ exports.newJwt = (user) => {
         },
         'jwt_secret',
         {
-            expiresIn: '15m',
+            expiresIn: '10000m',
         });
     return token;
 };
 
 exports.verify = (req) => {
     const token = req.headers['token'];
-    if(token) {
-        const result = jwt.verify(token, 'jwt_secret');
+    let test = token.substring(6);
+    if (token) {
+        const result = jwt.verify(test, 'jwt_secret');
         return result;
     } else
         return 'invalid';
