@@ -28,9 +28,18 @@ exports.newJwt = (user) => {
 
 exports.verify = (req) => {
     const token = req.headers['token'];
-    // let test = token.substring(6);
     if (token) {
         const result = jwt.verify(token, 'jwt_secret');
+        return result;
+    } else
+        return 'invalid';
+};
+
+exports.pokerVerify = (req) => {
+    const token = req.headers['token'];
+    let test = token.substring(6);
+    if (token) {
+        const result = jwt.verify(test, 'jwt_secret');
         return result;
     } else
         return 'invalid';
