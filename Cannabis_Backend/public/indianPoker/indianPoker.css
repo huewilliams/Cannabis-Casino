@@ -1,0 +1,318 @@
+@charset "utf-8";
+
+body {
+    background-color: black;
+}
+
+h1 {
+    color: #a07b12;
+    text-align: center;
+}
+
+.container {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+}
+
+.game_ui {
+    -webkit-flex: 3;
+    flex: 3;
+}
+
+.flex-column {
+    -webkit-flex: 2;
+    flex: 2;
+}
+
+.users {
+    display: -webkit-flex;
+    display: flex;
+}
+
+#p1 {
+    -webkit-flex: 1;
+    flex: 1;
+    background-color: #292C37;
+    color: white;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-right: 5%;
+}
+
+#p2 {
+    -webkit-flex: 1;
+    flex: 1;
+    background-color: #292C37;
+    color: white;
+    border-radius: 10px;
+}
+
+.chat {
+    margin-top: 5%;
+    display: -webkit-flex;
+    display: flex;
+    height: 50%;
+}
+
+fieldset {
+    background-color: #292C37;
+    width: 100%;
+    color: white;
+    margin-left: 2%;
+}
+
+input {
+    margin-top: 5%;
+    margin-left: 2%;
+    width: 80%
+}
+
+button {
+    width: 15%;
+}
+
+.system_chat {
+    color: green;
+    background-color: black;
+}
+
+p {
+    color: white;
+}
+
+.p2_chat {
+    text-align: right;
+    color: #a07b12;
+    margin-right: 3%;
+}
+
+#chat_list {
+    height: 90%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#ready {
+    width: 200px;
+    margin-left: 35%;
+    background-color: gray;
+    margin-top: 5%;
+    border: solid #292C37;
+    border-radius: 4px;
+}
+
+#dealer {
+    font-size: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.cards_img {
+    width: 100px;
+    height: auto;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.cards {
+    background-image: url("http://18.220.117.207:5000/img/casino.jpg");
+    border-radius: 100px;
+}
+
+#dealer_img {
+    width: 100px;
+    height: auto;
+    margin-top: 0;
+    margin-left: 45%;
+}
+
+.balloon {
+    position:relative;
+    padding:15px;
+    color:#fff;
+    background:#373b3b;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+}
+
+.balloon:after {
+    content:"";
+    position:absolute;
+    bottom:-20px;
+    left:45%;
+    border-width:20px 0 0 20px;
+    border-style:solid;
+    border-color:#373b3b transparent;
+    display:block;
+    width:0;
+}
+
+#total {
+    margin-left: 40%;
+}
+
+#call {
+    margin-left: 40%;
+    margin-bottom: 5%;
+}
+
+#p1_card {
+    margin-right: 13%;
+}
+
+#p2_card {
+    margin-left: 23%;
+}
+
+#bet_info {
+    width: max-content;
+    height: max-content;
+    background-color: black;
+}
+
+#modal {
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 7%;
+    padding-top: 2%;
+    width: max-content;
+    height: max-content;
+    display: none;
+    text-align: center;
+}
+
+.selection {
+    margin-top: 3%;
+    width: 250px;
+    height: 100px;
+    margin-left: 4%;
+}
+
+.wrap {
+    display: flex;
+    margin-top: 3%;
+    margin-left: 4%;
+    padding-left: 5%;
+}
+
+.button {
+    width: 140px;
+    height: 45px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-left: 3%;
+}
+
+.button:hover {
+    background-color: #ffbd00;
+    box-shadow: 0px 15px 20px #a07b12;
+    color: white;
+    transform: translateY(-7px);
+}
+
+#state {
+    color: red;
+    font-family: "나눔스퀘어 Bold";
+}
+
+.button2 {
+    margin-top: 5%;
+    width: 340px;
+    height: 45px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-left: 3%;
+    display: none;
+}
+
+.button2:hover {
+    background-color: #ff3300;
+    box-shadow: 0px 15px 20px #a0001d;
+    color: white;
+    transform: translateY(-7px);
+}
+
+.button3 {
+    margin-top: 5%;
+    width: 340px;
+    height: 45px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-left: 3%;
+    display: none;
+}
+
+.button3:hover {
+    background-color: #2dffaa;
+    box-shadow: 0px 15px 20px #02a063;
+    color: white;
+    transform: translateY(-7px);
+}
+
+#turn_change {
+    position: absolute;
+    background-image: url('http://18.220.117.207:5000/img/my_turn.jpg');
+    background-size: contain;
+    width: 320px;
+    height: 213px;
+    margin-left: 20%;
+    margin-top: 5%;
+    font-size: 50px;
+    color: black;
+    border-radius: 10px;
+    display: none;
+}
+
+#youLost {
+    position: absolute;
+    background-image: url('http://18.220.117.207:5000/img/defeat.jpg');
+    background-size: contain;
+    width: 320px;
+    height: 213px;
+    margin-left: 20%;
+    margin-top: 5%;
+    font-size: 40px;
+    color: black;
+    border-radius: 10px;
+    display: none;
+}
+
+#youWin {
+    position: absolute;
+    background-image: url('http://18.220.117.207:5000/img/mountain.jpg');
+    background-size: contain;
+    width: 320px;
+    height: 213px;
+    margin-left: 20%;
+    margin-top: 5%;
+    font-size: 40px;
+    color: black;
+    border-radius: 10px;
+    display: none;
+}
