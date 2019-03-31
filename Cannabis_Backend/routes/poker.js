@@ -3,7 +3,7 @@ const random = require('random');
 let router = express.Router();
 
 const jwt = require('jsonwebtoken');
-const {jwtVerify, verify} = require('./middlewares');
+const {pokerVerify} = require('./middlewares');
 const Room = require('../models').Room;
 const User = require('../models').User;
 
@@ -102,7 +102,7 @@ router.get('/bet/:title', async (req, res) => {
             where: {title: req.params.title},
         });
         if (room)
-            res.send(room.bet);
+            res.json({bet: room.bet});
     } else
         res.send('request_invalid');
 });
@@ -210,7 +210,7 @@ router.get('/chip/:nickname', async (req, res) => {
 });
 
 router.post('/chip', async (req, res) => {
-    let user = await verify(req);
+    let user = await pokerVerify(req);
     console.log('user : ',user);
     console.log('nick : ',req.body.nickname);
     if (user.nickname !== req.body.nickname) {
