@@ -96,7 +96,7 @@ let upload = multer({
 
 router.post('/dev/img', upload.single('img'), async (req, res)=> {
 //    console.log(req.file);
-    res.json({ url : `http://${process.env.HOST}:5000/${req.file.filename}`});
+    res.json({ img : req.file.filename});
 });
 
 router.post('/img', async (req, res)=>{
