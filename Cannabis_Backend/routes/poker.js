@@ -16,8 +16,7 @@ client.on('error', (err) => {
 });
 
 router.post('/', async (req, res) => {
-    console.log('cookie: ', req.cookies.token);
-    let token = jwt.verify(req.cookies.token, 'jwt_secret');
+    let token = await pokerVerify(req);
     const room = await Room.create({
         title: req.body.title,
         owner: token.nickname,
