@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Indian Poker</title>
+    <link rel="stylesheet" href="http://18.220.117.207:5000/indianPoker/room.css" type="text/css">
+</head>
+<body>
+<div class="page_wrapper">
+    <div class="room_wrapper">
+        <header>
+            <h1>Indian Poker</h1>
+        </header>
+        <div id="room_list">
+            <table>
+                <caption>Room List</caption>
+                <thead>
+                <tr>
+                    <th>room name</th>
+                    <th>방장</th>
+                    <th>인원</th>
+                    <th>초기 칩 베팅 개수</th>
+                </tr>
+                </thead>
+                <tbody id="rooms">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tmp">
+        <div id="room_create">
+            <h2>인디언포커 게임방 생성하기</h2>
+            <div>
+                <input id="room_name" placeholder="방 이름">
+            </div>
+            <div style="margin-bottom: 2%">
+                <button id="bet_money">초기 칩 베팅 개수</button>
+               <button id="thousand">1 +</button>
+                <button id="ten_thousand">1 -</button>
+                <button id="reset">reset</button>
+            </div>
+            <button id="create_btn" style="margin-left: 15%">게임 방 생성하기</button>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/room.js"></script>
+</body>
+</html>
