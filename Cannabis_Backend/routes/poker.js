@@ -102,7 +102,7 @@ router.get('/bet/:title', async (req, res) => {
             where: {title: req.params.title},
         });
         if (room)
-            res.send(room.bet + 'chip');
+            res.send(room.bet);
     } else
         res.send('request_invalid');
 });
@@ -210,7 +210,9 @@ router.get('/chip/:nickname', async (req, res) => {
 });
 
 router.post('/chip', async (req, res) => {
-    let user = verify(req);
+    let user = await verify(req);
+    console.log('user : ',user);
+    console.log('nick : ',req.body.nickname);
     if (user.nickname !== req.body.nickname) {
         res.send('invalid request');
     } else {
@@ -219,8 +221,8 @@ router.post('/chip', async (req, res) => {
         });
         if (result) {
             let chip = Number(req.body.chip) + Number(result.chip);
-            await User.update({chip: chip}, {where: {nickname: user.nickname}})
-            res.send('OK');
+            await User.update({chip: chip}, {where: {nickname: user.nickname}});
+            res.json({chip : chip});
         }
     }
 });
