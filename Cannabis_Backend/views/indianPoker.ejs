@@ -1,0 +1,88 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="http://18.220.117.207:5000/indianPoker/indianPoker.css" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="game_ui">
+        <section style="background-color: black">
+            <p id="dealer" class="balloon">게임 시작 전입니다</p>
+            <img id="dealer_img" src="http://18.220.117.207:5000/img/dealerW.png">
+        </section>
+        <section class="cards">
+            <div id="turn_change">
+                <p style="color: white; margin-left: 3%">Your Turn!</p>
+            </div>
+            <div id="youLost">
+                <p style="color: white; margin-left: 3%">Sorry You just lost the game</p>
+            </div>
+            <div id="youWin">
+                <p style="color: white; margin-left: 3%">You win the game</p>
+            </div>
+            <div id="modal" style="background-color: #292C37">
+                남은 카드수 <p id="deck_num">20</p>
+            </div>
+            <img class="cards_img" id="p1_card" src="http://18.220.117.207:5000/img/back_card2.png" style="cursor:pointer">
+            <img id="deck" class="cards_img" src="http://18.220.117.207:5000/img/deck.png">
+            <img class="cards_img" id="p2_card" src="http://18.220.117.207:5000/img/back_card2.png" style="cursor:pointer">
+            <div style="padding-bottom: 1%">
+                <p class="bet" id="total">TOTAL Bet : 0</p>
+                <p class="bet" id="call">CALL : 0</p>
+            </div>
+        </section>
+        <div class="wrap">
+            <button id="game_bet" class="button">베팅</button>
+            <button id="game_call" class="button">콜</button>
+            <button id="game_die" class="button">다이</button>
+            <button id="game_open" class="button">오픈</button>
+        </div>
+        <button id="continue" class="button3">게임 계속하기</button> <button id="out" class="button2">게임 나가기</button>
+    </div>
+    <div class="flex-column">
+        <section id="player_list">
+            <h1><%= title %> 방</h1>
+            <div class="users">
+                <div id="p1">
+                    <b style="margin-left: 1%">Player1 🤴(방장)</b>
+                    <p id="p1_name" style="margin-left: 3%; color: goldenrod">none</p>
+                    <p style="margin-left: 1%" id="p1_chip">보유 칩 : </p>
+                </div>
+                <div id="p2">
+                    <b style="margin-left: 1%">Player2 🤵(도전자)</b>
+                    <p id="p2_name" style="margin-left: 3%">none</p>
+                    <p style="margin-left: 1%" id="p2_chip">보유 칩 : </p>
+                    <p style="margin-left: 1%" id="state">준비안함</p>
+                </div>
+            </div>
+        </section>
+        <div class="chat" id="scroll">
+            <fieldset>
+                <legend>채팅</legend>
+                <div id="chat_list">
+
+                </div>
+            </fieldset>
+        </div>
+        <input id="chat_input" placeholder="메세지를 입력하세요" onkeydown="onKeyDown()">
+        <button id="chat_submit">전송</button>
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/setting.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/connect.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/gameLogic.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/battle.js"></script>
+<script src="http://18.220.117.207:5000/indianPoker/indianPoker.js"></script>
+<script>
+
+    var room = "<%= title %>";
+
+    let send = {
+        title: room,
+    }
+</script>
+</body>
+</html>
