@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+table {
+    border: 1px solid #444444;
+    width: 500px;
+    margin-left: 15%;
+}
+
+h1 {
+    color: #a07b12;
+    margin-left: 15%;
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+thead {
+    color: #a07b12;
+}
+
+.room_wrapper {
+    width: 50%;
+}
+
+.page_wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.tmp {
+    width: 50%;
+    margin-right: 5%;
+}
+
+#room_create {
+    margin: 3%;
+    border: 1px solid #444444;
+}
+
+input {
+    text-align: center;
+    width: 40%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+
+h2 {
+    margin-left: 5%;
+}
+
+span {
+    margin-left: 5%;
+    margin-top: 3%;
+    padding: 3px;
+    background-color: white;
+    color: #757575;
+    font-size: 0.85em;
+}
+
+#bet_money {
+    margin-left: 5%;
+    color: #757575;
+    background-color: white;
+    border: 0;
+    outline: 0;
+    width: 40%;
+}
