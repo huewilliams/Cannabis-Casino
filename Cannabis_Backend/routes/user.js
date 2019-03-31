@@ -99,4 +99,15 @@ router.post('/dev/img', upload.single('img'), async (req, res)=> {
     res.json({ url : `http://${process.env.HOST}:5000/${req.file.filename}`});
 });
 
+router.post('/img', async (req, res)=>{
+    let userInfo = verify(req);
+    let user = await User.findOne({
+        where: {nickname: userInfo.nickname},
+    });
+    if(user) {
+        await User.update({profile: req.body.profile},{where:{nickname: user.nickname}});
+        res.json({img: req.body.profile})
+    }
+});
+
 module.exports = router;
