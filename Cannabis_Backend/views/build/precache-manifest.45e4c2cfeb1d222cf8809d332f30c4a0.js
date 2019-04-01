@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/static/media/chip.c4b9c7b4.png"
   },
   {
-    "revision": "b935708bc4330c5ad6ac",
-    "url": "/static/css/main.f88ad567.chunk.css"
+    "revision": "3909c8de9fd747a53fe1",
+    "url": "/static/css/main.7d3e69b3.chunk.css"
   },
   {
     "revision": "fdfcfda2d9b1bf31db52",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/static/media/lottery.862aadbc.png"
   },
   {
-    "revision": "b935708bc4330c5ad6ac",
-    "url": "/static/js/main.f1112e81.chunk.js"
+    "revision": "3909c8de9fd747a53fe1",
+    "url": "/static/js/main.0ab30077.chunk.js"
   },
   {
     "revision": "5ed919e979144eff37d43e92f256830b",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/static/media/Poker.2d10fb81.jpg"
   },
   {
-    "revision": "3f7727b44c894e4c28a2ea3e632d173e",
+    "revision": "1ad73fbbda497d9bf28c3a419913fc24",
     "url": "/index.html"
   }
 ];
