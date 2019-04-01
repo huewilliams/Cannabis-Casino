@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         yam: {
             type: DataTypes.INTEGER(11),
-            defaultValue: 0,
+            defaultValue: 10000,
         },
         profile: {
             type: DataTypes.STRING(100),
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         chip: {
             type: DataTypes.INTEGER(),
-            defaultValue: 5,
+            defaultValue: 100,
         }
     }, {
         timestamps: false
