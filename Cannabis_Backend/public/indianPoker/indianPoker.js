@@ -92,9 +92,9 @@ function none() {
     game_call.style.display = 'none';
     game_die.style.display = 'none';
     game_open.style.display = 'none';
-    let button2 = document.getElementById('continue');
+    // let button2 = document.getElementById('continue');
     let button3 = document.getElementById('out');
-    button2.style.display = 'inline';
+    // button2.style.display = 'inline';
     button3.style.display = 'inline';
 }
 
