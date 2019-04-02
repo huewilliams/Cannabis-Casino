@@ -24,14 +24,20 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signUp', async (req, res, next) => {
     try {
-        await User.create({
-            id: req.body.id,
-            realname: req.body.realName,
-            password: req.body.password,
-            email: req.body.email,
-            nickname: req.body.nickname
+        let user = await User.findOne({
+            where: {nickname: req.body.nickname},
         });
-        res.json({state: "signUp success"});
+        if(user) res.status(404).json({state:'duplicate nickname'});
+        else {
+            await User.create({
+                id: req.body.id,
+                realname: req.body.realName,
+                password: req.body.password,
+                email: req.body.email,
+                nickname: req.body.nickname
+            });
+            res.json({state: "signUp success"});
+        }
     } catch (e) {
         next(e);
     }
