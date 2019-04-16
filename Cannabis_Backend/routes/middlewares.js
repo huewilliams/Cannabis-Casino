@@ -44,3 +44,13 @@ exports.pokerVerify = (req) => {
     } else
         return 'invalid';
 };
+
+exports.secretCheck = (req, res, next) => {
+    const header = req.headers[process.env.HEADER];
+    if(header === process.env.HEADER_SECRET)
+    {
+        next();
+    } else {
+        res.status(401).json({message:"요청이 거절되었습니다"});
+    }
+}
