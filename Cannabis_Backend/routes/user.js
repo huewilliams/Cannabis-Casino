@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
-const { verify, jwtVerify } = require('./middlewares');
+const { verify, jwtVerify , secretCheck } = require('./middlewares');
 const User = require('../models').User;
 
 router.get('/img/:nickname', async (req, res, next)=> {
@@ -38,7 +38,7 @@ router.get('/yam', async (req, res)=>{
     }
 });
 
-router.post('/yam', jwtVerify, async (req, res)=>{
+router.post('/yam',jwtVerify, async (req, res)=>{
    let userInfo = verify(req);
    let user = await User.findOne({
        where: {nickname: userInfo.nickname},
