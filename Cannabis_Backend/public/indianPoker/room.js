@@ -85,7 +85,11 @@ axios.get(`http://${host}:5000/poker/list`)
             let enter = document.createElement('button');
             enter.addEventListener('click', ()=>{
                 console.log(title.textContent);
-                window.location.href=`http://${host}:5000/poker/${title.textContent}`;
+                if(Number(people.textContent.split('/')[0]) >= 2) {
+                    alert("게임 인원 수가 꽉 차 입장할 수 없습니다");
+                } else {
+                    window.location.href=`http://${host}:5000/poker/${title.textContent}`;
+                }
             });
             enter.textContent = '게임 입장';
             rooms.append(tr);
