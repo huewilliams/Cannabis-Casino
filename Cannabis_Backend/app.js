@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-require('dotenv').config();
+require('dotenv').config({path: '.env'});
 const favicon = require('express-favicon');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');

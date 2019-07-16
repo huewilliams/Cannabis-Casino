@@ -4,9 +4,9 @@ const random = require('random');
 let router = express.Router();
 
 const redis = require('redis');
-const client = redis.createClient('18078', 'redis-18078.c10.us-east-1-2.ec2.cloud.redislabs.com');
+const client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
 
-client.auth('Br34hJvfhfuBY32qWS9Z69mO02cKcRMS');
+client.auth(process.env.REDIS_PASSWORD);
 client.on('error', (err) => {
     console.log(err);
 });

@@ -3,12 +3,12 @@ const Sequelize = require('sequelize');
 const db = {};
 
 const sequelize = new Sequelize(
-    'cannabis', //db 이름
-    'root', // 이름명
-    '1234', // 비밀번호
+    process.env.DB_NAME, //db 이름
+    process.env.DB_USER, // db 사용자명
+    process.env.DB_PASSWORD, // 비밀번호
     {
-        'host': '18.220.117.207', // 사용할 호스트
-        'dialect': 'mysql', // 사용할 DB 종류
+        'host': process.env.DB_HOST, // 사용할 호스트
+        'dialect': process.env.DB_TYPE, // 사용할 DB 종류
         'operatorsAliases':false //deprecated 된 연산자 사용
     }
 );
