@@ -28,7 +28,7 @@
     "qs": "^6.6.0",
     "random": "^2.1.1",
     "redis": "^2.8.0",
-    "sequelize": "^4.42.0",
+    "sequelize": "^5.15.1",
     "serve-favicon": "^2.5.0",
     "should": "^13.2.3",
     "socket.io": "^2.2.0",
